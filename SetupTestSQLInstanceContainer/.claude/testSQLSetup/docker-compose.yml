@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dams-sqlserver-dev
+    hostname: sqlserver
+    environment:
+      # Accept EULA for SQL Server
+      - ACCEPT_EULA=Y
+      # SA password (change this in .env file for security)
+      - SA_PASSWORD=${SA_PASSWORD:-Pass@word1}
+      # SQL Server edition (Developer is free, full-featured)
+      - MSSQL_PID=Developer
+      # Memory limit for SQL Server process (6GB = 6144 MB)
+      - MSSQL_MEMORY_LIMIT_MB=6144
+      # Enable SQL Server Agent
+      - MSSQL_AGENT_ENABLED=true
+      # Collation
+      - MSSQL_COLLATION=SQL_Latin1_General_CP1_CI_AS
+      # Backup compression default
+      - MSSQL_BACKUP_COMPRESSION_DEFAULT=1
+    ports:
+      # Expose SQL Server on port 1433
+      - "1433:1433"
+    volumes:
+      # Data volume (100GB allocated)
+      - sqlserver_data:/var/opt/mssql/data
+      # Log volume
+      - sqlserver_log:/var/opt/mssql/log
+      # Backup volume
+      - sqlserver_backup:/var/opt/mssql/backup
+      # Secrets volume (for certificates, keys)
+      - sqlserver_secrets:/var/opt/mssql/secrets
+      # Custom init scripts
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    mem_limit: 7g
+    mem_reservation: 6g
+    cpus: 4.0
+    restart: unless-stopped
+    networks:
+      - dams-network
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "$${SA_PASSWORD}", "-Q", "SELECT 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  sqlserver_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DATA_PATH:-./data}
+  sqlserver_log:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${LOG_PATH:-./logs}
+  sqlserver_backup:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${BACKUP_PATH:-../testSQL/bootstrap}
+  sqlserver_secrets:
+    driver: local
+
+networks:
+  dams-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
