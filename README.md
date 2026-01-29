@@ -1,4 +1,4 @@
-# AgentsOfShield 🛡️
+# AgentsOfAction 🛡️
 
 A curated collection of Claude agents/skills for day-to-day productivity and workflow automation.
 
