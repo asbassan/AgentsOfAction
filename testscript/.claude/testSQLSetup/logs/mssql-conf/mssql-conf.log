@@ -1,0 +1,22 @@
+2026-01-26 18:09:51,634:INFO:mssql-conf: Trying to make owner and group of the log files at /var/opt/mssql/log/mssql-conf mssql.
+2026-01-26 18:09:51,636:INFO:mssql-conf: Found user ID (10001) and group ID (10001) for user mssql.
+2026-01-26 18:09:51,638:INFO:mssql-conf: Trying chown the directory.
+2026-01-26 18:09:51,641:INFO:mssql-conf: Succesfully chown'd the directory.
+2026-01-26 18:09:51,647:INFO:mssql-conf: Trying to set ownership for file /var/opt/mssql/log/mssql-conf/mssql-conf.log.
+2026-01-26 18:09:51,650:INFO:mssql-conf: Successfully set ownership for file.
+2026-01-26 18:09:51,652:INFO:mssql-conf: Changing the permissions of the file to 660.
+2026-01-26 18:09:51,662:INFO:mssql-conf: Changed the permissions of the file.
+2026-01-26 18:09:51,664:INFO:mssql-conf: Successfully changed ownership for the directory /var/opt/mssql/log/mssql-conf and all files in that directory.
+2026-01-26 18:09:51,667:INFO:mssql-conf: Added shutdown hook to ensure ownership on the log files is correct.
+2026-01-26 18:09:51,669:INFO:mssql-conf: Logging has been fully configured.
+2026-01-26 18:09:51,671:INFO:mssql-conf: Executing command: [get]
+2026-01-26 18:09:51,675:INFO:mssql-conf: Executed command [get] successfully
+2026-01-26 18:09:51,677:INFO:mssql-conf: Trying to make owner and group of the log files at /var/opt/mssql/log/mssql-conf mssql.
+2026-01-26 18:09:51,679:INFO:mssql-conf: Found user ID (10001) and group ID (10001) for user mssql.
+2026-01-26 18:09:51,681:INFO:mssql-conf: Trying chown the directory.
+2026-01-26 18:09:51,683:INFO:mssql-conf: Succesfully chown'd the directory.
+2026-01-26 18:09:51,688:INFO:mssql-conf: Trying to set ownership for file /var/opt/mssql/log/mssql-conf/mssql-conf.log.
+2026-01-26 18:09:51,692:INFO:mssql-conf: Successfully set ownership for file.
+2026-01-26 18:09:51,694:INFO:mssql-conf: Changing the permissions of the file to 660.
+2026-01-26 18:09:51,697:INFO:mssql-conf: Changed the permissions of the file.
+2026-01-26 18:09:51,699:INFO:mssql-conf: Successfully changed ownership for the directory /var/opt/mssql/log/mssql-conf and all files in that directory.
