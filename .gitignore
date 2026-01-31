@@ -1,0 +1,24 @@
+# Private/Internal versions (not for public distribution)
+_private/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build and runtime files
+*.log
+*.tmp
+node_modules/
+__pycache__/
+*.pyc
+
+# Environment files with secrets
+.env.local
+.env.*.local
